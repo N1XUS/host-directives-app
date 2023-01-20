@@ -1,0 +1,15 @@
+<input
+    #comboboxInput
+    class="combobox-input"
+    type="text"
+    [attr.list]="'inputOptions' + uniqueId"
+    [attr.placeholder]="placeholder"
+    autocomplete="off"
+    (blur)="onBlur()"
+    [ngModel]="value"
+    (input)="onInput($event)"
+/>
+
+<datalist [id]="'inputOptions' + uniqueId" *ngIf="options?.length">
+    <option *ngFor="let option of options" [value]="option.value">{{ option.label }}</option>
+</datalist>

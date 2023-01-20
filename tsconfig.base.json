@@ -1,0 +1,26 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@host-directives-app/combobox": ["libs/combobox/src/index.ts"],
+      "@host-directives-app/cva": ["libs/cva/src/index.ts"],
+      "@host-directives-app/data-source": ["libs/data-source/src/index.ts"],
+      "@host-directives-app/shared": ["libs/shared/src/index.ts"],
+      "@host-directives-app/toggle": ["libs/toggle/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

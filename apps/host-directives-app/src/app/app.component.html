@@ -1,0 +1,26 @@
+<h2>Reactive form example</h2>
+<form [formGroup]="form">
+  <app-combobox
+    placeholder="Select option"
+    required="true"
+    formControlName="fruit"
+    [options]="options"
+  ></app-combobox>
+  <p></p>
+  <app-toggle formControlName="toggle"></app-toggle>
+  <button type="submit">Submit form</button>
+</form>
+
+<h2>Template-driven form example</h2>
+<form>
+  <app-combobox
+    placeholder="Select option"
+    required="true"
+    [options]="options"
+    [(ngModel)]="comboboxValue"
+    name="fruit"
+  ></app-combobox>
+  <p></p>
+  <app-toggle name="toggle" [(ngModel)]="toggleValue"></app-toggle>
+  <button type="submit">Submit form</button>
+</form>
