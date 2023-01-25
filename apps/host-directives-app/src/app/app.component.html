@@ -11,8 +11,10 @@
   <button type="submit">Submit form</button>
 </form>
 
+<p>Form value: {{ form.value | json }}</p>
+
 <h2>Template-driven form example</h2>
-<form>
+<form #ngForm="ngForm">
   <app-combobox
     placeholder="Select option"
     required="true"
@@ -24,3 +26,5 @@
   <app-toggle name="toggle" [(ngModel)]="toggleValue"></app-toggle>
   <button type="submit">Submit form</button>
 </form>
+
+<p>Form value: {{ ngForm.value | json }}</p>
