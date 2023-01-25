@@ -55,12 +55,6 @@ export class DataSourceDirective<
   @Output()
   readonly dataChanged = new EventEmitter<T[]>();
 
-  /**
-   * Event emitted when data provider loading state has been changed.
-   */
-  @Output()
-  readonly isLoading = new EventEmitter<boolean>();
-
   private _dataSource: Nullable<DataSource<T>>;
 
   private readonly _destroyed$ = inject(DestroyedService);
@@ -70,8 +64,6 @@ export class DataSourceDirective<
   /** @hidden */
   private _initializeDataSource(): void {
     if (isDataSource(this.dataSource)) {
-      this.dataSourceProvider?.unsubscribe();
-
       this._dsSubscription?.unsubscribe();
     }
     // Convert whatever comes in as DataSource, so we can work with it identically
@@ -84,13 +76,7 @@ export class DataSourceDirective<
     this._dsSubscription = new Subscription();
 
     this._dsSubscription.add(
-      this.dataSourceProvider.dataLoading
-        .pipe(takeUntil(this._destroyed$))
-        .subscribe((isLoading) => this.isLoading.emit(isLoading))
-    );
-
-    this._dsSubscription.add(
-      this.dataSourceProvider.dataChanges
+      this.dataSourceProvider.fetch()
         .pipe(takeUntil(this._destroyed$))
         .subscribe((data) => {
           this.dataChanged.emit(data);
@@ -101,7 +87,6 @@ export class DataSourceDirective<
 
   /** @hidden */
   ngOnDestroy(): void {
-    this.dataSourceProvider?.unsubscribe();
     this._dsSubscription?.unsubscribe();
   }
 

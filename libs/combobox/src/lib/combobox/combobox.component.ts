@@ -45,7 +45,7 @@ let UNIQUE_ID = 0;
       inputs: ['dataSource:options'],
       // Expose data source's directive outputs directly from combobox component.
       // eslint-disable-next-line @angular-eslint/no-outputs-metadata-property
-      outputs: ['dataSourceChanged', 'dataChanged', 'isLoading'],
+      outputs: ['dataSourceChanged', 'dataChanged'],
     },
   ],
 })
@@ -75,7 +75,6 @@ export class ComboboxComponent implements OnInit {
   options: ComboboxItem[] = [];
 
   ngOnInit(): void {
-    this._dataSourceDirective.dataSourceProvider?.match();
     this._dataSourceDirective.dataChanged$
       .pipe(takeUntil(this._destroyed$))
       .subscribe((data) => {
